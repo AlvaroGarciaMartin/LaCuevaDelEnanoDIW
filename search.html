@@ -18,17 +18,21 @@
 </head>
 
 <body>
+  <!-- Atajo de accesibilidad para saltar al contenido principal -->
   <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
   <div>
+    <!-- Cabecera global compartida con navegación y buscador -->
     <header class="py-3">
       <div class="container-fluid header-grid">
 
+        <!-- Logo enlazado a la portada -->
         <div class="header-logo">
           <a href="index.html">
             <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
           </a>
         </div>
 
+        <!-- Zona central: buscador + menú de navegación -->
         <div class="header-central">
           <div class="header-buscador">
             <div class="input-group">
@@ -48,6 +52,7 @@
           </nav>
         </div>
 
+        <!-- Acciones de usuario y menú hamburguesa en móvil -->
         <div class="header-iconos">
           <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesion" class="icono-header"></a>
           <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
@@ -62,6 +67,7 @@
 
       </div>
 
+      <!-- Menú alternativo para pantallas pequeñas -->
       <div class="collapse mt-3 d-md-none" id="menuMovil">
         <div class="p-3 rounded bg-secondary">
           <nav class="d-flex flex-column gap-2 text-center">
@@ -75,6 +81,7 @@
       </div>
     </header>
 
+    <!-- Contenedor de resultados de búsqueda (se rellena desde script.js) -->
     <main id="contenidoPrincipal" tabindex="-1" class="busqueda-main container">
       <h1>Busqueda de productos</h1>
       <p>Consulta: <strong id="textoConsultaBusqueda"></strong></p>
@@ -82,6 +89,7 @@
       <section id="resultadosBusqueda" class="resultados-busqueda" aria-live="polite"></section>
     </main>
 
+    <!-- Pie de página común de la web -->
     <footer class="text-light py-4">
       <div class="container text-center">
         <p class="mb-0">© 2025 La Cueva del Enano — Todos los derechos reservados.</p>

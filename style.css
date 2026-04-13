@@ -500,6 +500,7 @@ body {
 }
 
 .scroll-top-btn {
+  /* Botón flotante para volver arriba */
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -533,6 +534,7 @@ body {
 }
 
 .tabs-anio.nav-tabs {
+  /* Pestañas de la página de más vendidos */
   border-bottom-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 1.2rem;
 }
@@ -549,6 +551,7 @@ body {
 }
 
 .cart-page {
+  /* Layout general de cart.html */
   padding: 1rem;
 }
 
@@ -577,6 +580,7 @@ body {
 }
 
 .cart-item {
+  /* Tarjeta individual de producto en carrito */
   display: grid;
   grid-template-columns: 94px 1fr;
   gap: 0.8rem;
@@ -1456,6 +1460,7 @@ header .col-md-2 {
 }
 
 .botonAnadir {
+  /* Botón de acción principal para añadir productos */
   background-color: var(--tipografias-principal);
   color: var(--cabecera-footer-principal);
   font-weight: bold;
@@ -1472,6 +1477,7 @@ header .col-md-2 {
 }
 
 .cuadranteTienda {
+  /* Rejilla de productos de shop.html */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 5px;
@@ -1590,6 +1596,7 @@ header .col-md-2 {
 
 /* ===== MODAL PRODUCTO ===== */
 .modal-producto {
+  /* Capa de fondo del modal de detalle de producto */
   position: fixed;
   top: 0;
   left: 0;

@@ -18,16 +18,20 @@
 </head>
 
 <body>
+  <!-- Enlace para accesibilidad de teclado/lector -->
   <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
   <div>
+    <!-- Cabecera común con buscador y navegación -->
     <header class="py-3">
       <div class="container-fluid header-grid">
+        <!-- Marca y acceso a la página de inicio -->
         <div class="header-logo">
           <a href="index.html">
             <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
           </a>
         </div>
 
+        <!-- Buscador y menú principal -->
         <div class="header-central">
           <div class="header-buscador">
             <div class="input-group">
@@ -47,6 +51,7 @@
           </nav>
         </div>
 
+        <!-- Iconos de cuenta, idioma, carrito y modo -->
         <div class="header-iconos">
           <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesión" class="icono-header"></a>
           <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
@@ -60,6 +65,7 @@
         </div>
       </div>
 
+      <!-- Menú para móvil -->
       <div class="collapse mt-3 d-md-none" id="menuMovil">
         <div class="p-3 rounded bg-secondary">
           <nav class="d-flex flex-column gap-2 text-center">
@@ -73,6 +79,7 @@
       </div>
     </header>
 
+    <!-- Catálogo top ventas segmentado por año con pestañas Bootstrap -->
     <main id="contenidoPrincipal" tabindex="-1" class="container">
       <h1 class="catalogo-titulo">Juegos Más Vendidos</h1>
       <ul class="nav nav-tabs tabs-anio" id="tabsAnioTop" role="tablist">
@@ -83,6 +90,7 @@
         <li class="nav-item" role="presentation"><button class="nav-link" id="tab-2026" data-bs-toggle="tab" data-bs-target="#panel-2026" type="button" role="tab" aria-controls="panel-2026" aria-selected="false">2026</button></li>
       </ul>
 
+      <!-- Contenido de cada pestaña: productos destacados por año -->
       <div class="tab-content" id="tabsAnioTopContenido">
         <div class="tab-pane fade show active" id="panel-2022" role="tabpanel" aria-labelledby="tab-2022">
           <section class="catalogo-grid mt-3">
@@ -186,6 +194,7 @@
       </div>
     </main>
 
+    <!-- Modal de detalle de producto compartido con otras páginas -->
     <div id="modalProducto" class="modal-producto oculto">
       <div class="modal-contenido">
         <span class="cerrar-modal">&times;</span>
@@ -221,6 +230,7 @@
       </div>
     </div>
 
+    <!-- Pie de página común -->
     <footer class="text-light py-4">
       <div class="container text-center">
         <p class="mb-0">© 2025 La Cueva del Enano — Todos los derechos reservados.</p>

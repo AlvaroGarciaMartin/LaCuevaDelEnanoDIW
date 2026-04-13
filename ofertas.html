@@ -18,16 +18,20 @@
 </head>
 
 <body>
+  <!-- Enlace de accesibilidad para ir al contenido principal -->
   <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
   <div>
+    <!-- Cabecera global de sitio -->
     <header class="py-3">
       <div class="container-fluid header-grid">
+        <!-- Columna izquierda: identidad visual -->
         <div class="header-logo">
           <a href="index.html">
             <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
           </a>
         </div>
 
+        <!-- Columna central: buscador y navegación -->
         <div class="header-central">
           <div class="header-buscador">
             <div class="input-group">
@@ -47,6 +51,7 @@
           </nav>
         </div>
 
+        <!-- Columna derecha: acciones de usuario -->
         <div class="header-iconos">
           <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesión" class="icono-header"></a>
           <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
@@ -60,6 +65,7 @@
         </div>
       </div>
 
+      <!-- Menú móvil colapsable -->
       <div class="collapse mt-3 d-md-none" id="menuMovil">
         <div class="p-3 rounded bg-secondary">
           <nav class="d-flex flex-column gap-2 text-center">
@@ -73,6 +79,7 @@
       </div>
     </header>
 
+    <!-- Catálogo de ofertas con tarjetas de producto -->
     <main id="contenidoPrincipal" tabindex="-1" class="container">
       <h1 class="catalogo-titulo">Juegos en Oferta</h1>
       <section class="catalogo-grid">
@@ -138,6 +145,7 @@
       </section>
     </main>
 
+    <!-- Modal reutilizable de detalle de producto -->
     <div id="modalProducto" class="modal-producto oculto">
       <div class="modal-contenido">
         <span class="cerrar-modal">&times;</span>
@@ -173,6 +181,7 @@
       </div>
     </div>
 
+    <!-- Pie de página del sitio -->
     <footer class="text-light py-4">
       <div class="container text-center">
         <p class="mb-0">© 2025 La Cueva del Enano — Todos los derechos reservados.</p>

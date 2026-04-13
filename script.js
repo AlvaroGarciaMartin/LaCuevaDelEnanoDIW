@@ -14,7 +14,7 @@ const modalTitulo = document.getElementById("modalTitulo");
 const modalDescripcion = document.getElementById("modalDescripcion");
 const cerrarModal = document.querySelector(".cerrar-modal");
 
-// Descripciones personalizadas (puedes ampliarlas o modificarlas)
+// Catálogo maestro de productos usado en modal, carrito, buscador y filtros.
 const productos = {
   "viajeros al tren": {
     precio: "29,99€",
@@ -227,6 +227,7 @@ const productos = {
   }
 };
 
+// Relación de clave de producto -> nombre del archivo de imagen.
 const imagenesProductos = {
   "viajeros al tren": "aventurerosTren.png",
   "la mansión de la locura": "mansion.png",
@@ -246,6 +247,7 @@ const imagenesProductos = {
 };
 
 function normalizarTexto(texto) {
+  // Convierte a minúsculas y elimina tildes para comparar textos de forma robusta.
   return (texto || '')
     .toString()
     .toLowerCase()
@@ -254,6 +256,7 @@ function normalizarTexto(texto) {
 }
 
 function obtenerListaProductos() {
+  // Convierte el objeto de productos en array para poder filtrar/ordenar fácilmente.
   return Object.entries(productos).map(([nombre, datos]) => ({
     nombre,
     ...datos,
@@ -262,6 +265,7 @@ function obtenerListaProductos() {
 }
 
 function filtrarProductos(consulta, listaProductos) {
+  // Filtrado por nombre, descripción y etiquetas con comparación normalizada.
   const consultaNormalizada = normalizarTexto(consulta);
   if (!consultaNormalizada) return listaProductos;
 
@@ -275,11 +279,13 @@ function filtrarProductos(consulta, listaProductos) {
   });
 }
 
+// PERTENECE AL CARRITO: claves de almacenamiento persistente para carrito, valoraciones y favoritos.
 const CART_STORAGE_KEY = 'cueva_cart_v1';
 const RATINGS_STORAGE_KEY = 'cueva_ratings_v1';
 const FAVORITOS_STORAGE_KEY = 'cueva_favoritos_v1';
 
 function precioTextoANumero(precioTexto) {
+  // Convierte "29,99€" o formatos similares a número decimal JavaScript.
   const limpio = (precioTexto || '0')
     .replace('€', '')
     .replace(/\./g, '')
@@ -290,10 +296,12 @@ function precioTextoANumero(precioTexto) {
 }
 
 function numeroAPrecioTexto(valor) {
+  // Formatea número a estilo local: dos decimales y coma decimal.
   return `${valor.toFixed(2).replace('.', ',')}€`;
 }
 
 function obtenerNombreVisible(claveProducto) {
+  // Pasa de clave en minúsculas a formato legible para la UI.
   return claveProducto
     .split(' ')
     .map((palabra) => palabra.charAt(0).toUpperCase() + palabra.slice(1))
@@ -302,6 +310,7 @@ function obtenerNombreVisible(claveProducto) {
 
 function cargarCarrito() {
   try {
+    // PERTENECE AL CARRITO: lee el carrito persistido; si no existe, devuelve un array vacío.
     const guardado = localStorage.getItem(CART_STORAGE_KEY);
     return guardado ? JSON.parse(guardado) : [];
   } catch {
@@ -310,11 +319,13 @@ function cargarCarrito() {
 }
 
 function guardarCarrito(carrito) {
+  // PERTENECE AL CARRITO: guarda el carrito completo serializado en localStorage.
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrito));
 }
 
 function cargarValoraciones() {
   try {
+    // Recupera valoraciones guardadas por producto.
     const guardado = localStorage.getItem(RATINGS_STORAGE_KEY);
     return guardado ? JSON.parse(guardado) : {};
   } catch {
@@ -323,11 +334,13 @@ function cargarValoraciones() {
 }
 
 function guardarValoraciones(valoraciones) {
+  // Persiste las valoraciones del usuario.
   localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(valoraciones));
 }
 
 function cargarFavoritos() {
   try {
+    // Recupera listado de favoritos del usuario.
     const guardado = localStorage.getItem(FAVORITOS_STORAGE_KEY);
     return guardado ? JSON.parse(guardado) : [];
   } catch {
@@ -336,10 +349,12 @@ function cargarFavoritos() {
 }
 
 function guardarFavoritos(favoritos) {
+  // Guarda la lista de claves favoritas.
   localStorage.setItem(FAVORITOS_STORAGE_KEY, JSON.stringify(favoritos));
 }
 
 function resolverClaveProducto(nombre) {
+  // Localiza la clave interna del producto por nombre aproximado o exacto.
   const nombreNormalizado = normalizarTexto(nombre);
   const claves = Object.keys(productos);
 
@@ -355,6 +370,7 @@ function resolverClaveProducto(nombre) {
 }
 
 function obtenerClaveDesdeBotonAnadir(boton) {
+  // PERTENECE AL CARRITO: identifica qué producto debe añadirse según el botón pulsado.
   if (boton.id === 'botonAnadirModal' && modalTitulo?.textContent) {
     return resolverClaveProducto(modalTitulo.textContent);
   }
@@ -384,6 +400,7 @@ function obtenerClaveDesdeBotonAnadir(boton) {
 }
 
 function actualizarContadorCarrito() {
+  // PERTENECE AL CARRITO: suma cantidades y actualiza todos los iconos de carrito en cabecera.
   const cantidadTotal = cargarCarrito().reduce((suma, item) => suma + item.cantidad, 0);
 
   document.querySelectorAll('.icono-carrito').forEach((icono) => {
@@ -404,6 +421,7 @@ function actualizarContadorCarrito() {
 }
 
 function mostrarNotificacionCarrito(texto) {
+  // PERTENECE AL CARRITO: crea un toast temporal tras añadir un producto al carrito.
   let contenedor = document.getElementById('notificacionesCarrito');
   if (!contenedor) {
     contenedor = document.createElement('div');
@@ -427,6 +445,7 @@ function mostrarNotificacionCarrito(texto) {
 }
 
 function renderizarResumenCarritoDesplegable() {
+  // PERTENECE AL CARRITO: rellena el mini panel lateral (máximo 5 productos) y su total.
   const lista = document.getElementById('cartQuickList');
   const total = document.getElementById('cartQuickTotal');
   const vacio = document.getElementById('cartQuickEmpty');
@@ -455,6 +474,7 @@ function renderizarResumenCarritoDesplegable() {
 }
 
 function inicializarResumenCarritoDesplegable() {
+  // PERTENECE AL CARRITO: genera e inicializa el panel lateral rápido del carrito.
   const enlacesCarrito = [...document.querySelectorAll('.icono-carrito')]
     .map((icono) => icono.closest('a[href="cart.html"]'))
     .filter(Boolean);
@@ -519,6 +539,7 @@ function inicializarResumenCarritoDesplegable() {
 }
 
 function inicializarBotonSubir() {
+  // Inserta botón flotante para volver arriba cuando hay scroll.
   const botonSubir = document.createElement('button');
   botonSubir.type = 'button';
   botonSubir.className = 'scroll-top-btn';
@@ -543,6 +564,8 @@ function inicializarBotonSubir() {
 }
 
 function crearWidgetValoracionModal() {
+  // PERTENECE AL MODAL DE PRODUCTO: inserta el bloque visual de valoración.
+  // Inyecta un bloque de estrellas en el modal de producto.
   const modalContenedor = document.querySelector('#modalProducto .modal-contenido');
   if (!modalContenedor || document.getElementById('modalRating')) return;
 
@@ -564,6 +587,8 @@ function crearWidgetValoracionModal() {
 }
 
 function actualizarWidgetValoracion(claveProducto) {
+  // PERTENECE A VALORACIONES: dibuja estrellas activas y guarda selección del usuario.
+  // Redibuja estrellas y estado de valoración para el producto activo.
   const contenedorEstrellas = document.getElementById('modalRatingStars');
   const textoValoracion = document.getElementById('modalRatingText');
   if (!contenedorEstrellas || !textoValoracion || !claveProducto) return;
@@ -595,6 +620,8 @@ function actualizarWidgetValoracion(claveProducto) {
 }
 
 function inicializarInteraccionesTienda() {
+  // PERTENECE A LA TIENDA: activa favoritos, filtro de precio y ordenación en shop.html.
+  // Activa favoritos, filtros por precio, ordenación y contador de estado en shop.
   const cuadrante = document.querySelector('.cuadranteTienda');
   const sliderPrecio = document.getElementById('filtroPrecioMax');
   const valorPrecio = document.getElementById('valorFiltroPrecio');
@@ -696,6 +723,7 @@ function inicializarInteraccionesTienda() {
 }
 
 function anadirProductoAlCarrito(claveProducto, cantidad = 1) {
+  // PERTENECE AL CARRITO: añade/incrementa producto y refresca contador, panel rápido y notificación.
   const producto = productos[claveProducto];
   if (!producto) return;
 
@@ -722,6 +750,7 @@ function anadirProductoAlCarrito(claveProducto, cantidad = 1) {
 }
 
 function renderizarPaginaCarrito() {
+  // PERTENECE AL CARRITO: gestiona cart.html y acciones (+, -, eliminar, vaciar).
   const lista = document.getElementById('cartItemsList');
   const subtotal = document.getElementById('cartSubtotal');
   const total = document.getElementById('cartTotal');
@@ -778,6 +807,7 @@ function renderizarPaginaCarrito() {
     if (instanciaModalEliminar) instanciaModalEliminar.hide();
   });
 
+  // PERTENECE AL CARRITO: repinta todos los elementos del carrito y recalcula totales.
   const pintar = () => {
     const carrito = cargarCarrito();
     const cantidad = carrito.reduce((suma, item) => suma + item.cantidad, 0);
@@ -860,7 +890,8 @@ function renderizarPaginaCarrito() {
 
 
 
-// Añadir eventos a todas las imágenes
+// Modal de detalle: abre al pulsar imágenes de producto en distintas secciones.
+// PERTENECE AL MODAL DE PRODUCTO: carga datos del producto seleccionado en la ventana emergente.
 document.querySelectorAll(".ajustarImagenEnlace img, .novedadesProducto img, .lmVendidoProducto img, .imagenProducto img")
   .forEach((img) => {
     img.addEventListener("click", (e) => {
@@ -908,7 +939,7 @@ document.querySelectorAll(".ajustarImagenEnlace img, .novedadesProducto img, .lm
       document.body.classList.add("modal-abierto");
     });
   });
-// Evento para cerrar el modal
+// Cierra el modal desde el botón de cerrar y restablece estado del body.
 if (cerrarModal && modal) {
   cerrarModal.addEventListener("click", () => {
     modal.classList.add("oculto");
@@ -929,9 +960,11 @@ function activarFichaTecnica() {
     }
   });
 }
+// Registra el comportamiento desplegable de ficha técnica en móviles.
 document.addEventListener("click", activarFichaTecnica);
 
-// funcion para cambiar el color del tema
+// Tema visual (claro/oscuro): aplica, alterna y persiste preferencia.
+// PERTENECE AL TEMA VISUAL: controla icono, atributo data-theme y persistencia en localStorage.
 
 const toggleButton = document.getElementById('modoImagen');
 
@@ -972,6 +1005,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //cambiar favicon segun tema
 function updateFavicon() {
+  // Ajusta favicon según preferencia de esquema de color del sistema.
   const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
   favicon.rel = 'icon';
   favicon.type = 'image/png';
@@ -994,7 +1028,7 @@ if (modalImg) {
   });
 }
 
-// Carrito: contador global y alta de productos desde botones de compra.
+// PERTENECE AL CARRITO: inicialización global de carrito y acciones de añadir desde botones de compra.
 document.addEventListener('DOMContentLoaded', () => {
   actualizarContadorCarrito();
   inicializarResumenCarritoDesplegable();
@@ -1020,6 +1054,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Buscador global: redirige a search.html manteniendo la consulta en la URL.
+// PERTENECE AL BUSCADOR: autocompletado, envío por botón/Enter y navegación a resultados.
 document.addEventListener('DOMContentLoaded', () => {
   const inputBusqueda = document.getElementById('buscador');
   const botonBusqueda = document.getElementById('botonLupa');
@@ -1111,6 +1146,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Página de búsqueda: pinta resultados usando la misma base de productos del modal.
+// PERTENECE A SEARCH.HTML: renderiza resultados según el parámetro q de la URL.
 document.addEventListener('DOMContentLoaded', () => {
   const contenedorResultados = document.getElementById('resultadosBusqueda');
   const tituloResultados = document.getElementById('tituloResultadosBusqueda');
@@ -1152,6 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   QUÉ HACE: cuando el elemento entra en viewport, se añade .is-visible para ejecutar la animación CSS.
 */
 document.addEventListener('DOMContentLoaded', () => {
+  // PERTENECE A ANIMACIONES DE SCROLL: activa efecto reveal al entrar en viewport.
   const elementosAnimables = document.querySelectorAll(
     '#novedades h2, #lmVendido h2, .novedadesProducto, .lmVendidoProducto, #contenedorBannerCentral, #contenedorBannerPie'
   );

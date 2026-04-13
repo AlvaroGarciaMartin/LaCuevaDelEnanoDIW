@@ -18,17 +18,21 @@
 </head>
 
 <body>
+  <!-- Enlace de accesibilidad para saltar directamente al contenido principal -->
   <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
   <div>
+    <!-- Cabecera global con logo, buscador, navegación e iconos -->
     <header class="py-3">
       <div class="container-fluid header-grid">
 
+        <!-- Columna izquierda: logo y enlace a inicio -->
         <div class="header-logo">
           <a href="index.html">
             <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
           </a>
         </div>
 
+        <!-- Columna central: buscador + menú principal de navegación -->
         <div class="header-central">
           <div class="header-buscador">
             <div class="input-group">
@@ -48,6 +52,7 @@
           </nav>
         </div>
 
+        <!-- Columna derecha: acciones rápidas del usuario y botón menú móvil -->
         <div class="header-iconos">
           <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesión" class="icono-header"></a>
           <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
@@ -61,6 +66,7 @@
         </div>
       </div>
 
+      <!-- Menú colapsable para pantallas pequeñas -->
       <div class="collapse mt-3 d-md-none" id="menuMovil">
         <div class="p-3 rounded bg-secondary">
           <nav class="d-flex flex-column gap-2 text-center">
@@ -74,8 +80,10 @@
       </div>
     </header>
 
+    <!-- Contenido principal del carrito -->
     <main id="contenidoPrincipal" tabindex="-1" class="container cart-page">
       <div class="cart-layout">
+        <!-- Panel izquierdo: listado de productos añadidos -->
         <section class="cart-panel">
           <h1>Tu carrito</h1>
           <p class="small">Revisa, ajusta cantidades o elimina productos antes de finalizar la compra.</p>
@@ -85,6 +93,7 @@
           <div id="cartItemsList" class="cart-items"></div>
         </section>
 
+        <!-- Panel derecho: resumen económico y acciones del carrito -->
         <aside class="cart-summary">
           <h2>Resumen</h2>
           <div class="cart-summary-row">
@@ -107,6 +116,7 @@
       </div>
     </main>
 
+    <!-- Pie de página común del sitio -->
     <footer class="text-light py-4 mt-4">
       <div class="container text-center">
         <p class="mb-0">© 2025 La Cueva del Enano — Todos los derechos reservados.</p>
@@ -114,9 +124,11 @@
     </footer>
   </div>
 
+  <!-- Bootstrap para componentes interactivos (collapse, modales, etc.) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+  <!-- Script principal de la web (carrito, buscador, modal, animaciones, etc.) -->
   <script src="script.js" defer></script>
 </body>
 

@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <!-- Enlace de accesibilidad para saltar directamente al contenido principal -->
   <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
   <div>
     <header class="py-3">
@@ -96,12 +97,14 @@
           title="Banner superior promocional" loading="eager"></iframe>
       </div>
     </div>
+    <!-- Separador visual animado entre banner superior y contenido -->
     <div class="separador-animado" aria-hidden="true"></div>
+      <!-- Contenido principal de portada: novedades, más vendido y secciones destacadas -->
       <main id="contenidoPrincipal" tabindex="-1">
         <div id="novedades">
           <h2>NOVEDADES</h2>
         </div>
-        <!-- Carrusel de Novedades -->
+        <!-- Carrusel de Novedades (solo móvil) -->
         <div id="novedadesCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
           <div class="carousel-inner text-center">
 
@@ -241,7 +244,7 @@
           </button>
         </div>
 
-        <!-- Versión de escritorio (sin carrusel) -->
+        <!-- Versión de escritorio de novedades (sin carrusel) -->
         <div class="container text-center d-none d-md-block">
           <div class="row align-items-start">
             <div class="col novedadesProducto">
