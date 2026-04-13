@@ -4,7 +4,7 @@ Proyecto web desarrollado para la asignatura de Diseño de Interfaces.
 
 ## Autor
 
-- Nombre y apellidos: [RELLENAR]
+- Nombre y apellidos: ALVARO GARCIA MARTIN
 - Curso: 2º DAW
 - Fecha: Abril 2026
 
@@ -42,11 +42,11 @@ La Cueva del Enano es una web temática de juegos de mesa con estética de fanta
 
 ### 1) Repositorio público en GitHub
 
-- URL del repositorio: [PEGAR_URL_REPOSITORIO]
+- URL del repositorio: https://github.com/AlvaroGarciaMartin/LaCuevaDelEnanoDIW
 
 ### 2) Publicación con GitHub Pages
 
-- URL de la web publicada: [PEGAR_URL_GITHUB_PAGES]
+- URL de la web publicada: https://alvarogarciamartin.github.io/LaCuevaDelEnanoDIW/
 
 ### 3) Vídeo de funcionamiento (mínimo 2 navegadores)
 
@@ -58,9 +58,6 @@ Incluye un vídeo mostrando:
 
 Enlace del vídeo: [PEGAR_URL_VIDEO]
 
-Si quieres incrustarlo en markdown:
-
-[![Ver vídeo de demostración](https://img.youtube.com/vi/ID_DEL_VIDEO/0.jpg)](https://www.youtube.com/watch?v=ID_DEL_VIDEO)
 
 ### 4) Captura de accesibilidad
 
