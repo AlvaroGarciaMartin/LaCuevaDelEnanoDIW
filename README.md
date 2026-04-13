@@ -70,10 +70,7 @@ Ejemplo de inserción de imagen:
 ## Cómo ejecutar en local
 
 1. Abrir la carpeta del proyecto en VS Code.
-2. Ejecutar un servidor local (por ejemplo):
-   - python -m http.server 4173
-3. Abrir en navegador:
-   - http://localhost:4173/index.html
+2. ejecutar index.html
 
 ## Tecnologías usadas
 
