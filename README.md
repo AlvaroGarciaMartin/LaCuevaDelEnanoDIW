@@ -65,7 +65,7 @@ Adjunta al repositorio una captura de Lighthouse (accesibilidad/rendimiento).
 
 Ejemplo de inserción de imagen:
 
-![Captura de Lighthouse](docs/lighthouse-captura.png)
+![alt text](image.png)(docs/lighthouse-captura.png)
 
 ## Cómo ejecutar en local
 
