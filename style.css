@@ -1,0 +1,2059 @@
+/*
+================================= INDICE RAPIDO DE ANIMACIONES =================================
+
+- ANIMACION borde del banner superior -> selector: #bannerSuperiorIframe | keyframes: bordeBannerAnimado
+- ANIMACION separador entre banner y novedades -> clase: .separador-animado
+- ANIMACION barra que se desplaza horizontalmente -> keyframes: separadorDesplazamiento
+- ANIMACION barra que cambia de color -> keyframes: separadorCambioColor
+- ANIMACION microinteracción tarjetas (actividad 1) -> selectores: .novedadesProducto:hover/.lmVendidoProducto:hover + :focus-within
+- ANIMACION flotabilidad tarjetas (actividad 6) -> keyframes: tarjetaFlota | selectores nth-child en .container.text-center .col.novedadesProducto
+- ANIMACION titulos -> selectores: #novedades h2, #lmVendido h2, #quienSomos h4, #enlacesInfo h4, #dondeEstamos h4
+- ANIMACION scroll (actividad 5) -> clases CSS: .reveal-on-scroll y .is-visible
+- ANIMACION avanzada Chart.js (actividad 4) -> contenedor: .grafica-card | canvas: #ventasChart | controles: #factorDemanda, #botonAlternarSerie, #botonAlternarTipo, #valorTipoGrafico
+- ACCESIBILIDAD ANIMACIONES -> bloque: @media (prefers-reduced-motion: reduce)
+
+===============================================================================================
+*/
+
+/*tema oscuro por defecto*/
+:root {
+  --cabecera-footer-principal: #121212;
+  --body-principal: #3e3e3e;
+  --tipografias-principal: #d9b25d;
+  --tipografias-secundaria: white;
+  --tipografias-secundaria-botonesFooter: black;
+  --cajas-productos: #555c66;
+  --texto-banner: white;
+  --lupa-buscador: #343a40;
+  --imagen-banner: url("img/banners/banner.png");
+  --imagen-banner-pie: url("img/banners/enanosCueva.png");
+  --imagen-hero: url("img/hero/tierraMediaFlecha.png");
+  --imagen-info: url("iconsvec/infoOscuro.png");
+  --texto-quienes-somos: white;
+  --etiquetas-span: goldenrod;
+  --entrar-registrate: #7A350D;
+  --registrate: goldenrod;
+
+  /* Sistema de variables para animaciones */
+  --anim-duracion-corta: 220ms;
+  --anim-duracion-media: 480ms;
+  --anim-duracion-larga: 2600ms;
+  --anim-duracion-scroll: 820ms;
+  --anim-desplazamiento-scroll: 42px;
+  --anim-ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --anim-elevacion-tarjeta: -8px;
+  --anim-escala-sutil: 1.03;
+  --anim-separador-color-1: #d9b25d;
+  --anim-separador-color-2: #8e6a2c;
+  --anim-separador-color-3: #486F9A;
+}
+
+/* tema claro*/
+[data-theme="light"] {
+  --cabecera-footer-principal: #486F9A;
+  --body-principal: #c3d2e7;
+  --tipografias-principal: #343a40;
+  --tipografias-secundaria: #212529;
+  --tipografias-secundaria-botonesFooter: white;
+  --cajas-productos: #e9ecef;
+  --texto-banner: black;
+  --lupa-buscador: #ced4da;
+  --imagen-banner: url("img/banners/banner2.png");
+  --imagen-banner-pie: url("img/banners/presente.png");
+  --imagen-info: url("iconsvec/info.png");
+  --texto-quienes-somos: white;
+  --etiquetas-span: goldenrod;
+  --entrar-registrate: #343a40;
+  --registrate: darkblue;
+
+  /* Variables de animación para tema claro */
+  --anim-separador-color-1: #486F9A;
+  --anim-separador-color-2: #9db7d6;
+  --anim-separador-color-3: #d9b25d;
+}
+
+/* cambio de tema automatico dependiendo del tema del sistema*/
+
+/*@media (prefers-color-scheme: light) {
+  :root {
+    --cabecera-footer-principal: #f8f9fa;
+    --body-principal: #ffffff;
+    --tipografias-principal: #343a40;
+    --tipografias-secundaria: #212529;
+    --cajas-productos: #e9ecef;
+    --lupa-buscador: #ced4da;
+    --imagen-banner: url('img/banners/banner2.png');
+    --imagen-banner-pie: url('img/banners/.png');
+  }
+}*/
+
+header {
+  background-color: var(--cabecera-footer-principal);
+}
+
+body {
+  background-color: var(--body-principal) !important;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -48px;
+  z-index: 2000;
+  background-color: var(--tipografias-principal);
+  color: var(--cabecera-footer-principal);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.35rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0.7rem;
+}
+
+.busqueda-main {
+  padding: 2rem 1rem;
+  color: var(--tipografias-secundaria);
+}
+
+.resultados-busqueda {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.resultado-item {
+  background-color: var(--cajas-productos);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.resultado-imagen {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto 0.75rem;
+  border-radius: 8px;
+}
+
+.buscador-sugerencias {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--cabecera-footer-principal);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  z-index: 2500;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.sugerencia-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--tipografias-secundaria);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+}
+
+.sugerencia-item:hover,
+.sugerencia-item:focus-visible {
+  background: rgba(217, 178, 93, 0.18);
+  outline: none;
+}
+
+.sugerencia-item img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.sugerencia-vacia {
+  color: var(--tipografias-secundaria);
+  padding: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.catalogo-titulo {
+  color: var(--tipografias-principal);
+  font-family: "Cinzel Decorative", serif;
+  text-align: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.catalogo-card {
+  background-color: var(--cajas-productos);
+  border-radius: 14px;
+  padding: 0.9rem;
+  position: relative;
+  text-align: center;
+}
+
+.catalogo-card .imagenProducto {
+  display: flex;
+  justify-content: center;
+}
+
+.catalogo-card .normalizacionImagen {
+  width: 100%;
+  max-width: 190px;
+}
+
+.sello-categoria {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.sello-categoria img {
+  width: 14px;
+  height: 14px;
+}
+
+.sello-oferta {
+  background: #8e1d1d;
+}
+
+.sello-top {
+  background: #2f5f23;
+}
+
+.header-iconos a {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #b3261e;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border: 2px solid var(--cabecera-footer-principal);
+}
+
+.cart-toast-container {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cart-toast {
+  background: rgba(18, 18, 18, 0.95);
+  color: #fff;
+  border-left: 4px solid var(--tipografias-principal);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  max-width: 380px;
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cart-toast.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cart-toast.exit-right {
+  opacity: 0;
+  transform: translateX(420px);
+}
+
+.cart-quick-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 3050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.cart-quick-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-quick-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 92vw);
+  height: 100vh;
+  z-index: 3060;
+  background: var(--cabecera-footer-principal);
+  color: var(--tipografias-secundaria);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+.cart-quick-panel.open {
+  transform: translateX(0);
+}
+
+.cart-quick-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cart-quick-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--tipografias-principal);
+  font-family: "Cinzel Decorative", serif;
+}
+
+.cart-quick-header button {
+  border: none;
+  background: transparent;
+  color: var(--tipografias-secundaria);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.cart-quick-empty {
+  padding: 1rem;
+  opacity: 0.9;
+}
+
+.cart-quick-list {
+  overflow-y: auto;
+  padding: 0.7rem 1rem;
+}
+
+.cart-quick-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cart-quick-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cart-quick-name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cart-quick-meta {
+  margin: 0.2rem 0 0;
+  color: var(--tipografias-principal);
+  font-size: 0.9rem;
+}
+
+.cart-quick-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.9rem 1rem;
+}
+
+.cart-quick-total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.modal-rating {
+  margin-top: 0.8rem;
+  padding: 0.7rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.modal-rating h4 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.rating-star {
+  border: none;
+  background: transparent;
+  color: #888;
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.rating-star:hover,
+.rating-star.active {
+  color: #f2b94b;
+  transform: translateY(-1px) scale(1.05);
+}
+
+.rating-text {
+  margin: 0.45rem 0 0;
+  font-size: 0.92rem;
+}
+
+.shop-tools {
+  margin: 0.8rem auto 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--tipografias-secundaria);
+}
+
+.shop-tools-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr;
+  gap: 0.8rem;
+  align-items: end;
+}
+
+.shop-tools-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-tools-status {
+  margin-top: 0.65rem;
+  opacity: 0.92;
+}
+
+.cuadranteTienda > div {
+  position: relative;
+}
+
+.favorito-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #f4f4f4;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.favorito-btn:hover {
+  transform: scale(1.06);
+}
+
+.favorito-btn.activo {
+  background: #b3261e;
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .shop-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2900;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: var(--tipografias-principal);
+  color: #1b1b1b;
+  font-size: 1.45rem;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover,
+.scroll-top-btn:focus-visible {
+  transform: translateY(-2px) scale(1.04);
+  outline: none;
+}
+
+.tabs-anio.nav-tabs {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.2rem;
+}
+
+.tabs-anio .nav-link {
+  color: var(--tipografias-principal);
+  font-weight: 700;
+}
+
+.tabs-anio .nav-link.active {
+  color: #fff;
+  background-color: rgba(217, 178, 93, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cart-page {
+  padding: 1rem;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1rem;
+}
+
+.cart-panel,
+.cart-summary {
+  background: var(--cajas-productos);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.cart-panel h1,
+.cart-summary h2 {
+  color: var(--tipografias-principal);
+  font-family: "Cinzel Decorative", serif;
+}
+
+.cart-items {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 94px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.cart-item-image {
+  width: 94px;
+  height: 94px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.cart-item-content h3 {
+  margin: 0;
+  color: var(--tipografias-secundaria);
+  font-size: 1.05rem;
+}
+
+.cart-price {
+  margin: 0.35rem 0;
+  color: var(--tipografias-principal);
+  font-weight: 700;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cart-control-btn,
+.cart-remove-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  font-weight: 700;
+}
+
+.cart-control-btn {
+  background: var(--tipografias-principal);
+  color: #111;
+}
+
+.cart-remove-btn {
+  background: #7a1f1f;
+  color: #fff;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.55rem 0;
+  color: var(--tipografias-secundaria);
+}
+
+.cart-empty {
+  color: var(--tipografias-secundaria);
+  opacity: 0.9;
+  padding: 0.8rem 0;
+}
+
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+footer {
+  background-color: var(--cabecera-footer-principal);
+}
+
+header {
+  font-family: "Cinzel Decorative", serif;
+  letter-spacing: 0.5px;
+  color: var(--tipografias-principal);
+}
+
+#botonesHeader a {
+  color: var(--tipografias-principal);
+  font-weight: bold;
+  padding-bottom: 2em;
+}
+
+#iconoPrincipal {
+  margin-left: 0;
+  padding-left: 0;
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+header .col-md-2 {
+  padding-left: 0 !important;
+}
+
+.botonesMovilesSuperior {
+  background-color: var(--cabecera-footer-principal) !important;
+  color: var(--tipografias-principal) !important;
+  font-weight: bold;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 9px !important;
+}
+
+#menuMovil {
+  background-color: var(--cabecera-footer-principal) !important;
+  color: var(--tipografias-principal) !important;
+  font-weight: bold;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+}
+
+.botonesMenuMovil {
+  background-color: var(--tipografias-principal) !important;
+  color: var(--cabecera-footer-principal) !important;
+  font-weight: bold;
+  border: none;
+  padding: 0.5em 1em;
+
+  width: 100%;
+  border-radius: 10px;
+}
+
+#botonLupa {
+  background-color: var(--lupa-buscador);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 10px;
+}
+
+#lupa {
+  transform: rotate(-45deg);
+  width: 30px;
+  height: 40px;
+}
+
+#buscador {
+  background-color: var(--lupa-buscador);
+  color: var(--tipografias-secundaria);
+  border: none;
+  margin-bottom: 10px;
+}
+
+#buscadorCentral {
+  align-items: flex-end;
+  align-self: flex-end;
+  margin-left: 10%;
+}
+
+::placeholder {
+  color: var(--tipografias-principal) !important;
+  opacity: 1 !important;
+}
+
+#modoImagen {
+  background-color: transparent;
+  border: none;
+  width: auto;
+  max-width: 50px;
+  height: 30px;
+}
+
+/* ANIMACION pulse (actividad 4): icono de cambio de tema */
+#modoImagen .icono-apagado {
+  animation: pulseIconoTema 2.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes pulseIconoTema {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(217, 178, 93, 0));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 7px rgba(217, 178, 93, 0.75)) drop-shadow(0 0 14px rgba(217, 178, 93, 0.45));
+  }
+}
+
+/*cabecera estructuracion*/
+/* === ESTRUCTURA PRINCIPAL === */
+.header-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  column-gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* === ELEMENTOS === */
+/* ==== LOGO ==== */
+.logo-grande {
+  max-height: 160px;
+  /* más grande */
+}
+
+/* ACTIVIDAD 3 (SVG) - contenedor del logo vectorial en cabecera */
+.logo-svg {
+  /* Fuerza que el object se comporte como bloque para evitar espacios extra */
+  display: block;
+  /* Mantiene proporciones del SVG */
+  width: auto;
+  /* Tamaño visual del logotipo en escritorio */
+  max-height: 130px;
+}
+
+/* Buscador */
+.header-buscador .input-group {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.btn.btn-secondary {
+  background-color: var(--lupa-buscador);
+  border: none;
+}
+
+.btn.btn-secondary:hover {
+  background-color: var(--cajas-productos);
+}
+
+/* Botones de navegación */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.header-nav a {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--tipografias-principal);
+  transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+  color: var(--tipografias-principal);
+}
+
+/* Iconos derechos */
+.header-iconos {
+  display: flex;
+  align-items: flex-start;
+  /* arriba del todo */
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 0;
+  /* subimos del todo */
+  margin-right: 100px;
+  /* margen lateral */
+}
+
+.icono-header {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.icono-header:hover {
+  transform: scale(1.1);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+  .header-grid {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "logo iconos iconos"
+      "buscador buscador buscador";
+    row-gap: 1rem;
+  }
+
+  .header-nav {
+    display: none !important;
+    /* oculta el menú en móvil */
+  }
+
+  .header-logo {
+    grid-area: logo;
+  }
+
+  .header-buscador {
+    grid-area: buscador;
+  }
+
+  .header-iconos {
+    grid-area: iconos;
+    justify-content: flex-end;
+  }
+
+  .header-buscador .input-group {
+    max-width: 90%;
+  }
+}
+
+/* Opcional: en pantallas grandes el logo un poco más grande */
+@media (min-width: 1200px) {
+  .logo-grande {
+    max-height: 110px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header-iconos {
+    margin-right: 10px;
+    justify-content: flex-end;
+  }
+}
+
+/* ==== GRID PRINCIPAL ==== */
+.header-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* ==== ZONA CENTRAL ==== */
+.header-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Buscador centrado */
+.header-buscador .input-group {
+  max-width: 500px;
+  width: 100%;
+}
+
+.btn.btn-secondary {
+  background-color: var(--lupa-buscador);
+  border: none;
+}
+
+.btn.btn-secondary:hover {
+  background-color: var(--cajas-productos);
+}
+
+/* ==== BOTONES ==== */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.header-nav a {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--tipografias-principal);
+  transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+  color: var(--tipografias-secundaria);
+}
+
+.icono-header {
+  width: 42px;
+  /* más grandes */
+  height: 42px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.icono-header:hover {
+  transform: scale(1.1);
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 991px) {
+  .header-grid {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo iconos"
+      "buscador buscador"
+      "nav nav";
+    gap: 1rem;
+  }
+
+  .header-logo {
+    grid-area: logo;
+  }
+
+  .header-iconos {
+    grid-area: iconos;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .header-central {
+    grid-area: buscador;
+    align-items: center;
+  }
+
+  .header-buscador .input-group {
+    max-width: 90%;
+  }
+
+  .header-nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+}
+
+#contenedorRegistrate {
+  background-color: var(--cajas-productos);
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+#contenedorBannerCentral {
+  background-image: var(--imagen-banner);
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+}
+
+#contenedorBannerPie {
+  background-image: var(--imagen-banner-pie);
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  margin-top: 120px;
+}
+
+@media (max-width: 500px) {
+  #contenedorBannerCentral {
+    height: 100px;
+    /* Ajusta la altura para pantallas pequeñas */
+  }
+
+  #contenedorBannerPie {
+    height: 100px;
+    /* Ajusta la altura para pantallas pequeñas */
+  }
+}
+
+#registrate {
+  /* Convierte el contenedor del banner en un layout flexible */
+  display: flex;
+  /* Centra horizontalmente el iframe */
+  justify-content: center;
+  /* Centra verticalmente el iframe */
+  align-items: center;
+  /* Espacio superior para separarlo del encabezado */
+  margin-top: 18px;
+  /* Espacio inferior para separarlo de la sección de novedades */
+  margin-bottom: 28px;
+}
+
+#bannerSuperiorIframe {
+  /* Ocupa todo el ancho disponible del contenedor */
+  width: 100%;
+  /* Limita el ancho máximo para escritorio */
+  max-width: 760px;
+  /* Altura del banner en escritorio */
+  height: 135px;
+  /* Elimina borde nativo del iframe */
+  border: 0;
+  /* Redondea esquinas para integrarlo con el diseño */
+  border-radius: 10px;
+  /* Evita desbordes visuales dentro del iframe */
+  overflow: hidden;
+
+  /* ANIMACION borde del banner superior: brillo/borde dinámico en bucle */
+  box-shadow: 0 0 0 2px rgba(217, 178, 93, 0.2);
+  animation: bordeBannerAnimado var(--anim-duracion-larga) linear infinite;
+}
+
+/* ANIMACION borde del banner: cambio progresivo de brillo y color */
+@keyframes bordeBannerAnimado {
+  0% {
+    box-shadow: 0 0 0 2px rgba(217, 178, 93, 0.2), 0 0 8px rgba(217, 178, 93, 0.25);
+  }
+
+  50% {
+    box-shadow: 0 0 0 2px rgba(72, 111, 154, 0.45), 0 0 18px rgba(72, 111, 154, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(217, 178, 93, 0.2), 0 0 8px rgba(217, 178, 93, 0.25);
+  }
+}
+
+@media (max-width: 500px) {
+  #bannerSuperiorIframe {
+    /* Reduce altura para móviles pequeños */
+    height: 110px;
+  }
+}
+
+/* ANIMACION separador entre banner y novedades: barra en movimiento */
+.separador-animado {
+  width: min(92%, 980px);
+  height: 6px;
+  margin: 6px auto 22px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+      var(--anim-separador-color-1),
+      var(--anim-separador-color-2),
+      var(--anim-separador-color-3),
+      var(--anim-separador-color-1));
+  background-size: 220% 100%;
+  animation: separadorDesplazamiento 4s linear infinite, separadorCambioColor 6s ease-in-out infinite;
+}
+
+/* ANIMACION barra que se desplaza horizontalmente */
+@keyframes separadorDesplazamiento {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 220% 50%;
+  }
+}
+
+/* ANIMACION barra que cambia de color */
+@keyframes separadorCambioColor {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(35deg);
+  }
+}
+
+
+
+#botonRegistrate {
+  background-color: var(--tipografias-principal);
+  color: var(--cabecera-footer-principal);
+  font-weight: bold;
+  font-family: "Trade Winds", cursive;
+}
+
+#textoBanner {
+  justify-items: flex-end;
+  padding-top: 2em;
+  font-family: "Tiro Telugu", serif;
+}
+
+#textoBanner h5 {
+  color: var(--texto-banner);
+}
+
+#novedades h2 {
+  font-family: "Cinzel Decorative", serif;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  color: var(--tipografias-secundaria) !important;
+  text-align: center;
+}
+
+#lmVendido h2 {
+  font-family: "Cinzel Decorative", serif;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  color: var(--tipografias-secundaria) !important;
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* ANIMACION titulos: al pasar ratón o foco teclado aumentan ligeramente */
+#novedades h2,
+#lmVendido h2,
+#quienSomos h4,
+#enlacesInfo h4,
+#dondeEstamos h4 {
+  transition: transform var(--anim-duracion-corta) var(--anim-ease-suave),
+    letter-spacing var(--anim-duracion-corta) var(--anim-ease-suave);
+  transform-origin: center;
+}
+
+#novedades h2:hover,
+#lmVendido h2:hover,
+#quienSomos h4:hover,
+#enlacesInfo h4:hover,
+#dondeEstamos h4:hover,
+#novedades h2:focus-visible,
+#lmVendido h2:focus-visible,
+#quienSomos h4:focus-visible,
+#enlacesInfo h4:focus-visible,
+#dondeEstamos h4:focus-visible {
+  transform: scale(1.04);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+  #lmVendido h2 {
+    padding-top: 20px;
+  }
+}
+
+.novedadesProducto {
+  background-color: var(--cajas-productos);
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 250px;
+  margin-bottom: 50px;
+
+  /* Microinteracción suave */
+  transition: transform var(--anim-duracion-corta) var(--anim-ease-suave),
+    background-color var(--anim-duracion-corta) var(--anim-ease-suave),
+    box-shadow var(--anim-duracion-corta) var(--anim-ease-suave);
+}
+
+.lmVendidoProducto {
+  background-color: var(--cajas-productos);
+  border-radius: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 250px;
+  margin-bottom: 150px;
+
+  /* Microinteracción suave */
+  transition: transform var(--anim-duracion-corta) var(--anim-ease-suave),
+    background-color var(--anim-duracion-corta) var(--anim-ease-suave),
+    box-shadow var(--anim-duracion-corta) var(--anim-ease-suave);
+}
+
+/* ANIMACION microinteracción tarjetas (actividad 1): hover + Tab */
+.novedadesProducto:hover,
+.lmVendidoProducto:hover,
+.novedadesProducto:focus-within,
+.lmVendidoProducto:focus-within {
+  transform: translateY(-2px) scale(var(--anim-escala-sutil));
+  background-color: color-mix(in srgb, var(--cajas-productos) 85%, var(--tipografias-principal));
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+.novedadesProducto a:focus-visible,
+.lmVendidoProducto a:focus-visible {
+  outline: 2px solid var(--tipografias-principal);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* ANIMACION flotabilidad tarjetas (actividad 6): movimiento suave tarjeta por tarjeta */
+.novedadesProducto:hover,
+.lmVendidoProducto:hover,
+.novedadesProducto:focus-within,
+.lmVendidoProducto:focus-within {
+  animation: tarjetaFlota var(--anim-duracion-media) var(--anim-ease-suave) both;
+}
+
+.container.text-center .col.novedadesProducto:nth-child(1):hover,
+.container.text-center .col.novedadesProducto:nth-child(1):focus-within {
+  animation-delay: 0ms;
+}
+
+.container.text-center .col.novedadesProducto:nth-child(2):hover,
+.container.text-center .col.novedadesProducto:nth-child(2):focus-within {
+  animation-delay: 60ms;
+}
+
+.container.text-center .col.novedadesProducto:nth-child(3):hover,
+.container.text-center .col.novedadesProducto:nth-child(3):focus-within {
+  animation-delay: 120ms;
+}
+
+.container.text-center .col.novedadesProducto:nth-child(4):hover,
+.container.text-center .col.novedadesProducto:nth-child(4):focus-within {
+  animation-delay: 180ms;
+}
+
+.container.text-center .col.novedadesProducto:nth-child(5):hover,
+.container.text-center .col.novedadesProducto:nth-child(5):focus-within {
+  animation-delay: 240ms;
+}
+
+@keyframes tarjetaFlota {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  55% {
+    transform: translateY(var(--anim-elevacion-tarjeta)) rotate(-0.6deg) scale(1.03);
+  }
+
+  100% {
+    transform: translateY(-4px) rotate(0deg) scale(var(--anim-escala-sutil));
+  }
+}
+
+/*
+  ANIMACION scroll (actividad 5)
+  DÓNDE: clase .reveal-on-scroll (se añade desde script.js)
+  QUÉ HACE: elemento empieza oculto y desplazado hacia abajo; al activar .is-visible aparece suavemente.
+*/
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(var(--anim-desplazamiento-scroll)) scale(0.96);
+  transition: opacity var(--anim-duracion-scroll) var(--anim-ease-suave),
+    transform var(--anim-duracion-scroll) var(--anim-ease-suave);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/*
+  ANIMACION scroll tarjetas de Novedades
+  DÓNDE: clases .tarjeta-scroll-anim y .tarjeta-scroll-hidden
+  QUÉ HACE: al bajar hacia "Lo más vendido" las tarjetas de Novedades se mueven a la izquierda y se desvanecen.
+             al subir, vuelven a mostrarse.
+*/
+.tarjeta-scroll-anim {
+  transition: transform 420ms var(--anim-ease-suave), opacity 420ms var(--anim-ease-suave);
+  will-change: transform, opacity;
+}
+
+.tarjeta-scroll-hidden {
+  transform: translateX(-120px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Prioridad extra cuando coincide con .reveal-on-scroll para que prevalezca el desvanecido lateral */
+.reveal-on-scroll.tarjeta-scroll-hidden,
+.reveal-on-scroll.is-visible.tarjeta-scroll-hidden {
+  transform: translateX(-120px) scale(0.96);
+  opacity: 0;
+}
+
+#quienSomos,
+#enlacesInfo,
+#dondeEstamos {
+  color: var(--tipografias-secundaria);
+  text-align: justify;
+  font-family: "Cinzel Decorative", serif;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+#QuienesSomosTexto {
+  color: var(--texto-quienes-somos);
+  text-align: justify;
+  font-family: "Cinzel Decorative", serif;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+#quienSomos h4,
+#enlacesInfo h4,
+#dondeEstamos h4 {
+  color: var(--tipografias-secundaria) !important;
+  text-align: justify;
+  font-family: "Cinzel Decorative", serif;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#quienSomos,
+#enlacesInfo {
+  padding-right: 10px;
+}
+
+#quienSomos p {
+  font-size: 10px;
+}
+
+#dondeEstamos p {
+  font-size: 10px;
+}
+
+#enlacesInfo h4 {
+  text-align: center;
+}
+
+#enlacesInfo a {
+  text-align: center;
+}
+
+.enlaces-legales a {
+  color: var(--tipografias-secundaria);
+  font-size: 14px;
+  text-decoration: none;
+  text-align: left;
+}
+
+#botonUbicacion,
+#botonInfo,
+#botonSomos {
+  font-size: 16px;
+  font-family: "Cinzel Decorative", serif;
+  color: var(--tipografias-secundaria-botonesFooter) !important;
+}
+
+@media (max-width: 500px) {
+
+  #quienSomos,
+  #enlacesInfo,
+  #dondeEstamos {
+    font-size: 12px;
+    text-align: justify;
+  }
+}
+
+#footer2 {
+  color: var(--tipografias-secundaria);
+  padding: 10px 20px;
+  background-color: var(--body-principal);
+}
+
+.redes-sociales {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  /* espacio entre iconos */
+}
+
+.redes-sociales img {
+  width: 30px;
+  transition: transform 0.2s;
+}
+
+.redes-sociales img:hover {
+  transform: scale(1.1);
+}
+
+/* --- Versión móvil --- */
+@media (max-width: 768px) {
+  #footer2 {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .redes-sociales img {
+    width: 22px;
+    /* más pequeños en móvil */
+  }
+
+  .redes-sociales {
+    justify-content: center;
+    margin-top: 8px;
+  }
+}
+
+.normalizacionImagen {
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.botonAnadir {
+  background-color: var(--tipografias-principal);
+  color: var(--cabecera-footer-principal);
+  font-weight: bold;
+  font-family: "Trade Winds", cursive;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.textoProducto {
+  color: var(--tipografias-secundaria);
+  font-family: "Cinzel Decorative", serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cuadranteTienda {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  /* separación mínima entre cajas */
+  padding: 0 20px;
+  /* margen izquierdo y derecho de 20px */
+  justify-items: center;
+  /* centra cada caja dentro de su celda */
+  box-sizing: border-box;
+  /* asegura que el padding no rompa el ancho total */
+  margin-top: 40px;
+}
+
+.cuadranteTienda>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* distribuye imagen, texto y botón */
+  align-items: center;
+  /* centra horizontalmente todo */
+  background-color: var(--cajas-productos);
+  border-radius: 10px;
+  width: 80%;
+  height: 300px;
+  /* ajusta si necesitas más espacio */
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.imagenProducto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  /* la imagen ocupa el espacio disponible arriba */
+  max-height: 200px;
+}
+
+.imagenProducto img {
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: contain;
+}
+
+.botonAnadir {
+  align-self: center;
+  /* centra el botón horizontalmente */
+  margin-top: auto;
+  /* empuja el botón hacia abajo si hay espacio */
+}
+
+.textoProductoShopTitulo {
+  color: var(--tipografias-secundaria);
+  font-family: "Cinzel Decorative", serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.textoProductoShop {
+  color: var(--tipografias-secundaria);
+  font-family: "Cinzel Decorative", serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .textoProductoShop {
+    font-size: 12px;
+  }
+
+  .textoProductoShopTitulo {
+    font-size: 12px;
+  }
+
+  .imagenProducto {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    display: flex;
+    width: 100%;
+  }
+
+  .botonAnadir {
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .cuadranteTienda {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    /* sigue siendo 5px en móvil */
+    padding: 0 20px;
+    /* mantiene márgenes laterales */
+    justify-items: center;
+  }
+
+  .cuadranteTienda>div {
+    width: 100%;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+}
+
+.ajustarImagenEnlace {
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* ===== MODAL PRODUCTO ===== */
+.modal-producto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-producto.oculto {
+  display: none;
+}
+
+.modal-contenido {
+  /* background-color: var(--cajas-productos);
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;
+  max-height: auto;
+  text-align: center;
+  color: var(--tipografias-secundaria);
+  font-family: "Cinzel Decorative", serif;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);*/
+  background-color: var(--cajas-productos);
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  /* 🔥 CLAVE */
+  overflow-y: auto;
+  /* 🔥 CLAVE */
+  text-align: center;
+  color: var(--tipografias-secundaria);
+  font-family: "Cinzel Decorative", serif;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.modal-contenido::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
+}
+
+.modal-contenido img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--tipografias-secundaria);
+}
+
+#cantidadProducto {
+  width: 60px;
+  margin: 10px;
+  text-align: center;
+}
+
+body.modal-abierto {
+  overflow: hidden;
+}
+
+.ficha-tecnica {
+  background-color: #000;
+  color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.ficha-tecnica h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Cinzel Decorative", serif;
+}
+
+.ficha-tecnica h4 {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.ficha-tecnica ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.ficha-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.etiquetas {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.etiquetas span {
+  background-color: var(--etiquetas-span);
+  color: var(--cabecera-footer-principal);
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 3px 8px;
+  margin: 3px;
+  display: inline-block;
+}
+
+/*==== FIN PC====*/
+/* ---------- Estilos de Ficha Técnica ---------- */
+.ficha-tecnica {
+  margin-top: 15px;
+}
+
+.ficha-tecnica .ficha-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+}
+
+.ficha-tecnica .flecha {
+  transition: transform 0.3s ease;
+}
+
+/* ===== AJUSTES PARA MODAL EN MÓVIL ===== */
+@media (max-width: 500px) {
+  .modal-contenido {
+    width: 95%;
+    height: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* permitir scroll dentro del modal, aunque body esté bloqueado */
+  body.modal-abierto {
+    overflow: hidden;
+  }
+
+  .ficha-tecnica {
+    width: 100%;
+  }
+
+  /* --- Estilo del desplegable --- */
+  .ficha-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--body-principal);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .ficha-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ficha-tecnica.activa .ficha-contenido {
+    max-height: 600px;
+  }
+
+  .ficha-tecnica .flecha {
+    transition: transform 0.3s ease;
+  }
+
+  .ficha-tecnica.activa .flecha {
+    transform: rotate(180deg);
+  }
+}
+
+/* ===== FIN MODAL PRODUCTO ===== */
+
+/*Estilos Login/Register*/
+
+.login-container {
+  font-family: "Cinzel Decorative", serif !important;
+  background: var(--cajas-productos) !important;
+  padding: 30px;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--cabecera-footer-principal);
+}
+
+.iconoUsuario {
+  width: 100px;
+  height: 100px;
+}
+
+/* SVG de iniciar sesión: evita huecos inline y mantiene tamaño del icono */
+.iconoUsuario-svg {
+  display: inline-block;
+}
+
+button .iconoEntrar {
+  font-family: "Cinzel Decorative", serif !important;
+  width: 50px;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.botonEntrar {
+  background-color: var(--entrar-registrate) !important;
+  color: var(--cabecera-footer-principal) !important;
+  font-family: "Cinzel Decorative", serif !important;
+  font-weight: bold !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
+
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--tipografias-principal) !important;
+  border: none;
+
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: var(--tipografias-principal);
+}
+
+.login-container .extra {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-container .extra a {
+  color: var(--tipografias-principal);
+  text-decoration: none;
+}
+
+
+.extra {
+  padding-top: 20px;
+}
+
+.tarjetaLogin {
+  background-color: var(--cajas-productos) !important;
+}
+
+/* ACTIVIDAD 4 (Chart.js) - bloque visual integrado en login */
+.grafica-card {
+  background-color: var(--cajas-productos) !important;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--tipografias-principal) 25%, transparent);
+}
+
+/* Lienzo responsive para el gráfico animado */
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+}
+
+/* Canvas de Chart.js */
+#ventasChart {
+  width: 100% !important;
+  height: 320px !important;
+}
+
+@media (max-width: 768px) {
+  #ventasChart {
+    height: 260px !important;
+  }
+}
+
+.registrate {
+  color: var(--registrate) !important;
+  font-weight: bold;
+  font-family: "Cinzel Decorative", serif;
+}
+
+
+.imgInfo {
+  width: 30px;
+  display: block;
+  content: var(--imagen-info);
+  /* Para imágenes en <img>, mejor usar background-image */
+  background-image: var(--imagen-info);
+  width: 30px;
+  /* ancho de la imagen */
+  height: auto;
+  /* mantener proporción */
+  display: inline-block;
+}
+
+/* Estilos para la sección hero imagen */
+.hero {
+  position: relative;
+  background: var(--imagen-hero) no-repeat center center/cover;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  filter: brightness(0.9) contrast(1.1) saturate(1.2);
+  justify-content: flex-end;
+  padding-right: 5em;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  /* desvanecimiento a negro a la izquierda */
+  font-family: "Cinzel Decorative", serif;
+}
+
+.conocenos {
+  background-color: var(--registrate) !important;
+  color: var(--tipografias-secundaria-botonesFooter) !important;
+  font-family: "Trade Winds", cursive !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
+  border-radius: 10px !important;
+  position: absolute;
+  right: 0;
+}
+
+.hero-content {
+  position: relative;
+  /* para estar sobre el overlay */
+  color: white;
+  max-width: 100%;
+  margin-left: 50px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+  }
+
+  .hero-content {
+    max-width: 90%;
+    margin-left: 20px;
+  }
+}
+
+/* fin estilos para la sección hero imagen */
+/* Inicio estilos pagina Info*/
+.tienda {
+  width: 90%;
+  height: 60%;
+  padding-left: 5em;
+}
+
+.primerRow {
+  padding-right: 5em;
+}
+
+.textosInfo {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--texto-banner);
+  padding: 30px;
+}
+
+.mapa {
+  padding-bottom: 5em;
+  padding-right: 5em;
+  padding-top: 5em;
+}
+
+.somos {
+  padding-left: 5em;
+}
+
+.team-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.team-image img {
+  width: 100%;
+  display: block;
+}
+
+/* Filtro solo en la mitad derecha */
+.team-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  backdrop-filter: grayscale(100%) brightness(0.8);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ACCESIBILIDAD ANIMACIONES: reduce o desactiva movimiento no esencial */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .separador-animado,
+  #bannerSuperiorIframe {
+    animation: none !important;
+  }
+
+  .reveal-on-scroll,
+  .reveal-on-scroll.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .tarjeta-scroll-anim,
+  .tarjeta-scroll-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}

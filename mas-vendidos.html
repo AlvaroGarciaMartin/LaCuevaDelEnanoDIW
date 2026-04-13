@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lo Más Vendido | La Cueva del Enano</title>
+  <meta name="description" content="Juegos más vendidos de La Cueva del Enano">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/icons/logoPrincipal.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Telugu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
+  <div>
+    <header class="py-3">
+      <div class="container-fluid header-grid">
+        <div class="header-logo">
+          <a href="index.html">
+            <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
+          </a>
+        </div>
+
+        <div class="header-central">
+          <div class="header-buscador">
+            <div class="input-group">
+              <input id="buscador" type="search" class="form-control" placeholder="¿Qué estás buscando?" autocomplete="on">
+              <button id="botonLupa" class="btn btn-secondary">
+                <img id="lupa" src="img/icons/lupa.png" alt="Buscar">
+              </button>
+            </div>
+          </div>
+
+          <nav class="header-nav mt-3">
+            <a href="index.html" class="text-decoration-none text-warning">INICIO</a>
+            <a href="ofertas.html" class="text-decoration-none text-warning">OFERTAS</a>
+            <a href="mas-vendidos.html" class="text-decoration-none text-warning">LO MÁS VENDIDO</a>
+            <a href="shop.html" class="text-decoration-none text-warning">PRODUCTOS</a>
+            <a href="info.html" class="text-decoration-none text-warning">CONTACTO</a>
+          </nav>
+        </div>
+
+        <div class="header-iconos">
+          <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesión" class="icono-header"></a>
+          <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
+          <a href="cart.html"><img src="img/icons/carrito.png" alt="Carrito" class="icono-header icono-carrito"></a>
+          <button id="modoImagen"><img src="img/icons/apagado.png" alt="modo Oscuro" class="icono-header icono-apagado"></button>
+
+          <button class="btn p-0 border-0 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#menuMovil"
+            aria-controls="menuMovil" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="img/icons/hamburguesa.png" alt="Menú" style="width:35px; height:35px;">
+          </button>
+        </div>
+      </div>
+
+      <div class="collapse mt-3 d-md-none" id="menuMovil">
+        <div class="p-3 rounded bg-secondary">
+          <nav class="d-flex flex-column gap-2 text-center">
+            <a href="index.html" class="text-light text-decoration-none">INICIO</a>
+            <a href="ofertas.html" class="text-light text-decoration-none">OFERTAS</a>
+            <a href="mas-vendidos.html" class="text-light text-decoration-none">LO MÁS VENDIDO</a>
+            <a href="shop.html" class="text-light text-decoration-none">PRODUCTOS</a>
+            <a href="info.html" class="text-light text-decoration-none">CONTACTO</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenidoPrincipal" tabindex="-1" class="container">
+      <h1 class="catalogo-titulo">Juegos Más Vendidos</h1>
+      <ul class="nav nav-tabs tabs-anio" id="tabsAnioTop" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link active" id="tab-2022" data-bs-toggle="tab" data-bs-target="#panel-2022" type="button" role="tab" aria-controls="panel-2022" aria-selected="true">2022</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" id="tab-2023" data-bs-toggle="tab" data-bs-target="#panel-2023" type="button" role="tab" aria-controls="panel-2023" aria-selected="false">2023</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" id="tab-2024" data-bs-toggle="tab" data-bs-target="#panel-2024" type="button" role="tab" aria-controls="panel-2024" aria-selected="false">2024</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" id="tab-2025" data-bs-toggle="tab" data-bs-target="#panel-2025" type="button" role="tab" aria-controls="panel-2025" aria-selected="false">2025</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" id="tab-2026" data-bs-toggle="tab" data-bs-target="#panel-2026" type="button" role="tab" aria-controls="panel-2026" aria-selected="false">2026</button></li>
+      </ul>
+
+      <div class="tab-content" id="tabsAnioTopContenido">
+        <div class="tab-pane fade show active" id="panel-2022" role="tabpanel" aria-labelledby="tab-2022">
+          <section class="catalogo-grid mt-3">
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2022</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/aventurerosTren.png" alt="viajeros al tren"></a></div>
+              <div class="textoProductoShopTitulo">Viajeros al Tren</div><div class="textoProductoShop">Precio: 29.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2022</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/monopoli.png" alt="monopoli"></a></div>
+              <div class="textoProductoShopTitulo">Monopoli</div><div class="textoProductoShop">Precio: 19.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2022</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/scotland.png" alt="scotland yard"></a></div>
+              <div class="textoProductoShopTitulo">Scotland Yard</div><div class="textoProductoShop">Precio: 39.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-pane fade" id="panel-2023" role="tabpanel" aria-labelledby="tab-2023">
+          <section class="catalogo-grid mt-3">
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2023</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/munchking.png" alt="Munchkin"></a></div>
+              <div class="textoProductoShopTitulo">Munchkin</div><div class="textoProductoShop">Precio: 49.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2023</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/theIsland.png" alt="the island"></a></div>
+              <div class="textoProductoShopTitulo">The Island</div><div class="textoProductoShop">Precio: 34.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2023</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/burrito.png" alt="throw throw burrito"></a></div>
+              <div class="textoProductoShopTitulo">Throw Throw Burrito</div><div class="textoProductoShop">Precio: 18.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-pane fade" id="panel-2024" role="tabpanel" aria-labelledby="tab-2024">
+          <section class="catalogo-grid mt-3">
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2024</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/senorAnillos.png" alt="El Señor de los Anillos"></a></div>
+              <div class="textoProductoShopTitulo">El Señor de los Anillos</div><div class="textoProductoShop">Precio: 65.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2024</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/guerraAnillo.png" alt="La Guerra del Anillo"></a></div>
+              <div class="textoProductoShopTitulo">La Guerra del Anillo</div><div class="textoProductoShop">Precio: 75.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2024</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/viajesTierraMedia.png" alt="viajes por tierra media"></a></div>
+              <div class="textoProductoShopTitulo">Viajes por Tierra Media</div><div class="textoProductoShop">Precio: 90.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-pane fade" id="panel-2025" role="tabpanel" aria-labelledby="tab-2025">
+          <section class="catalogo-grid mt-3">
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2025</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/mansion.png" alt="La Mansión de la Locura"></a></div>
+              <div class="textoProductoShopTitulo">La Mansión de la Locura</div><div class="textoProductoShop">Precio: 80.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2025</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/magic.png" alt="magic the gathering"></a></div>
+              <div class="textoProductoShopTitulo">Magic the Gathering</div><div class="textoProductoShop">Precio: 90.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2025</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/unestableUnicorns.png" alt="Unestables Unicorns"></a></div>
+              <div class="textoProductoShopTitulo">Unestables Unicorns</div><div class="textoProductoShop">Precio: 20.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+          </section>
+        </div>
+
+        <div class="tab-pane fade" id="panel-2026" role="tabpanel" aria-labelledby="tab-2026">
+          <section class="catalogo-grid mt-3">
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2026</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/gnomeStreet.png" alt="gnome street"></a></div>
+              <div class="textoProductoShopTitulo">Gnome Street</div><div class="textoProductoShop">Precio: 39.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2026</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/herencia.png" alt="la herencia de tía agata"></a></div>
+              <div class="textoProductoShopTitulo">La Herencia de Tía Agata</div><div class="textoProductoShop">Precio: 29.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+            <article class="catalogo-card">
+              <span class="sello-categoria sello-top"><img src="img/icons/carrito.png" alt="Top ventas">TOP 2026</span>
+              <div class="imagenProducto"><a class="ajustarImagenEnlace" href="#"><img class="normalizacionImagen" src="img/images/explodingKitten.png" alt="exploding kittens"></a></div>
+              <div class="textoProductoShopTitulo">Exploding Kittens</div><div class="textoProductoShop">Precio: 19.99€</div><button class="botonAnadir">Añadir al carrito</button>
+            </article>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div id="modalProducto" class="modal-producto oculto">
+      <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <img id="modalImagen" src alt="imagen producto">
+        <h2 id="modalTitulo"></h2>
+        <p><strong>Precio:</strong> <span id="modalPrecio"></span></p>
+        <label for="cantidadProducto">Cantidad:</label>
+        <input type="number" id="cantidadProducto" min="1" value="1" autocomplete="off">
+
+        <div id="modalEtiquetas" class="etiquetas"></div>
+
+        <div class="ficha-tecnica">
+          <h3 class="ficha-titulo">
+            Ficha Técnica <span class="flecha">&#9662;</span>
+          </h3>
+          <div class="ficha-contenido">
+            <div class="ficha-grid">
+              <p><strong>Número de jugadores:</strong> <span id="modalJugadores"></span></p>
+              <p><strong>Duración:</strong> <span id="modalDuracion"></span></p>
+            </div>
+            <div>
+              <h4>Descripción</h4>
+              <p id="modalDescripcion"></p>
+            </div>
+            <div>
+              <h4>Otras características</h4>
+              <ul id="modalExtras"></ul>
+            </div>
+          </div>
+        </div>
+
+        <button id="botonAnadirModal" class="botonAnadir">Añadir al carrito</button>
+      </div>
+    </div>
+
+    <footer class="text-light py-4">
+      <div class="container text-center">
+        <p class="mb-0">© 2025 La Cueva del Enano — Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="script.js" defer></script>
+</body>
+
+</html>
+

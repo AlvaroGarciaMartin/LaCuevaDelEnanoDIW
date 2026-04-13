@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>La Cueva del Enano</title>
+  <meta name="description"
+    content="La Cueva del Enano, tienda de juegos de mesa ambientada en la tierra media en la que la fantasía y el rol se unen">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/icons/logoPrincipal.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Telugu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero/tierraMediaFlecha.png">
+
+</head>
+
+<body>
+  <a class="skip-link" href="#contenidoPrincipal">Saltar al contenido principal</a>
+  <div>
+    <header class="py-3">
+      <div class="container-fluid header-grid">
+
+        <!-- LOGO -->
+        <div class="header-logo">
+          <a href="index.html">
+            <img src="img/icons/logoPrincipal.png" alt="Logo" class="img-fluid logo-grande">
+          </a>
+        </div>
+
+        <!-- ZONA CENTRAL (buscador + botones) -->
+        <div class="header-central">
+          <div class="header-buscador">
+            <div class="input-group">
+              <input id="buscador" type="search" class="form-control" placeholder="¿Qué estás buscando?"
+                autocomplete="on">
+              <button id="botonLupa" class="btn btn-secondary">
+                <img id="lupa" src="img/icons/lupa.png" alt="Buscar">
+              </button>
+            </div>
+          </div>
+
+          <nav class="header-nav mt-3">
+            <a href="index.html" class="text-decoration-none text-warning">INICIO</a>
+            <a href="ofertas.html" class="text-decoration-none text-warning">OFERTAS</a>
+            <a href="mas-vendidos.html" class="text-decoration-none text-warning">LO MÁS VENDIDO</a>
+            <a href="shop.html" class="text-decoration-none text-warning">PRODUCTOS</a>
+            <a href="info.html" class="text-decoration-none text-warning">CONTACTO</a>
+          </nav>
+        </div>
+
+        <!-- ICONOS DERECHA -->
+        <div class="header-iconos">
+          <a href="login.html"><img src="img/icons/inicioSesion.png" alt="Inicio sesión" class="icono-header"></a>
+          <a href="#"><img src="img/icons/idioma.png" alt="Idioma" class="icono-header"></a>
+          <a href="cart.html"><img src="img/icons/carrito.png" alt="Carrito" class="icono-header icono-carrito"></a>
+          <button id="modoImagen"><img src="img/icons/apagado.png" alt="modo Oscuro"
+              class="icono-header icono-apagado"></button>
+
+          <!-- Botón hamburguesa móvil -->
+          <button class="btn p-0 border-0 d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#menuMovil"
+            aria-controls="menuMovil" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="img/icons/hamburguesa.png" alt="Menú" style="width:35px; height:35px;">
+          </button>
+        </div>
+
+      </div>
+
+      <!-- MENÚ MÓVIL -->
+      <div class="collapse mt-3 d-md-none" id="menuMovil">
+        <div class="p-3 rounded bg-secondary">
+          <nav class=" d-flex flex-column gap-2 text-center">
+            <a href="index.html" class="text-light text-decoration-none">INICIO</a>
+            <a href="ofertas.html" class="text-light text-decoration-none">OFERTAS</a>
+            <a href="mas-vendidos.html" class="text-light text-decoration-none">LO MÁS VENDIDO</a>
+            <a href="shop.html" class="text-light text-decoration-none">PRODUCTOS</a>
+            <a href="info.html" class="text-light text-decoration-none">CONTACTO</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- Fin Header -->
+    <!-- Primer banner integrado desde Google Web Designer -->
+    <div class="banner-container">
+      <div id="registrate" class="banner col-12 col-md-11 mx-auto d-flex">
+        <!-- Carga el banner creado en la carpeta BannerSuperior -->
+        <!-- Título accesible para lectores de pantalla -->
+        <!-- loading="eager" fuerza carga inmediata para que se vea al abrir la home -->
+        <iframe id="bannerSuperiorIframe" src="BannerSuperior/BannerSuperior.html"
+          title="Banner superior promocional" loading="eager"></iframe>
+      </div>
+    </div>
+    <div class="separador-animado" aria-hidden="true"></div>
+      <main id="contenidoPrincipal" tabindex="-1">
+        <div id="novedades">
+          <h2>NOVEDADES</h2>
+        </div>
+        <!-- Carrusel de Novedades -->
+        <div id="novedadesCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+          <div class="carousel-inner text-center">
+
+            <div class="carousel-item active">
+              <div class="d-flex justify-content-center">
+                <div class="col-10">
+                  <div class="p-3 novedadesProducto border rounded">
+                    <div class="flex-md-row">
+                      <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/aventurerosTren.png" srcset="
+                      img/images/pequenas/aventurerosTren.png 300w,
+                      img/images/medianas/aventurerosTren.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="viajeros al tren" loading="lazy"></a>
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Viajeros al Tren
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Precio: 29.99€
+                    </div>
+                    <div class="flex-md-row">
+                      <button aria-label="botonanadir" class="botonAnadir">Añadir al carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div class="col-10">
+                  <div class="p-3 novedadesProducto border rounded">
+                    <div class="flex-md-row">
+                      <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/mansion.png" srcset="
+                      img/images/pequenas/mansion.png 300w,
+                      img/images/medianas/mansion.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="La Mansión de la Locura" loading="lazy"></a>
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      La Mansión de la Locura
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Precio: 80.99€
+                    </div>
+                    <div class="flex-md-row">
+                      <button aria-label="La Mansión de la Locura" class="botonAnadir">Añadir al carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div class="col-10">
+                  <div class="p-3 novedadesProducto border rounded">
+                    <div class="flex-md-row">
+                      <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/explodingKitten.png" srcset="
+                      img/images/pequenas/explodingKitten.png 300w,
+                      img/images/medianas/explodingKitten.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="Exploding Kittens" loading="lazy"></a>
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Exploding Kittens
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Precio: 19.99€
+                    </div>
+                    <div class="flex-md-row">
+                      <button aria-label="Exploding Kittens" class="botonAnadir">Añadir al carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div class="col-10">
+                  <div class="p-3 novedadesProducto border rounded">
+                    <div class="flex-md-row">
+                      <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/theIsland.png" srcset="
+                      img/images/pequenas/theIsland.png 300w,
+                      img/images/medianas/theIsland.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="La Isla" loading="lazy"></a>
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      The Island
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Precio: 34.99€
+                    </div>
+                    <div class="flex-md-row">
+                      <button aria-label="The Island" class="botonAnadir">Añadir al carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div class="col-10">
+                  <div class="p-3 novedadesProducto border rounded">
+                    <div class="flex-md-row">
+                      <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/magic.png" srcset="
+                      img/images/pequenas/magic.png 300w,
+                      img/images/medianas/magic.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="Magic the Gathering" loading="lazy"></a>
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Magic the Gathering
+                    </div>
+                    <div class="textoProducto flex-md-row">
+                      Precio: 90.99€
+                    </div>
+                    <div class="flex-md-row">
+                      <button aria-label="Magic the Gathering" class="botonAnadir">Añadir al carrito</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controles -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#novedadesCarousel" data-bs-slide="prev"
+            aria-label="Anterior Producto Novedades">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#novedadesCarousel" data-bs-slide="next"
+            aria-label="Siguiente Producto Novedades">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+
+        <!-- Versión de escritorio (sin carrusel) -->
+        <div class="container text-center d-none d-md-block">
+          <div class="row align-items-start">
+            <div class="col novedadesProducto">
+              <div class="flex-md-row">
+                <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/aventurerosTren.png" srcset="
+                      img/images/pequenas/aventurerosTren.png 300w,
+                      img/images/medianas/aventurerosTren.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="Viajeros al Tren" loading="lazy"></a>
+              </div>
+              <div class="textoProducto flex-md-row">
+                Viajeros al Tren
+              </div>
+              <div class="textoProducto flex-md-row">
+                Precio: 29.99€
+              </div>
+              <div class="flex-md-row">
+                <button class="botonAnadir">Añadir al carrito</button>
+              </div>
+            </div>
+            <div class="col novedadesProducto">
+              <div class="flex-md-row">
+                <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/mansion.png" srcset="
+                      img/images/pequenas/mansion.png 300w,
+                      img/images/medianas/mansion.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="La Mansión" loading="lazy"></a>
+              </div>
+              <div class="textoProducto flex-md-row">
+                La Mansión Locura
+              </div>
+              <div class="textoProducto flex-md-row">
+                Precio: 80.99€
+              </div>
+              <div class="flex-md-row">
+                <button class="botonAnadir">Añadir al carrito</button>
+              </div>
+            </div>
+            <div class="col novedadesProducto">
+              <div class="flex-md-row">
+                <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/explodingKitten.png" srcset="
+                      img/images/pequenas/explodingKitten.png 300w,
+                      img/images/medianas/explodingKitten.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="Exploding Kittens" loading="lazy"></a>
+              </div>
+              <div class="textoProducto flex-md-row">
+                Exploding Kittens
+              </div>
+              <div class="textoProducto flex-md-row">
+                Precio: 19.99€
+              </div>
+              <div class="flex-md-row">
+                <button class="botonAnadir">Añadir al carrito</button>
+              </div>
+            </div>
+            <div class="col novedadesProducto">
+              <div class="flex-md-row">
+                <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/theIsland.png"></a>
+              </div>
+              <div class="textoProducto flex-md-row">
+                The Island
+              </div>
+              <div class="textoProducto flex-md-row">
+                Precio: 34.99€
+              </div>
+              <div class="flex-md-row">
+                <button class="botonAnadir">Añadir al carrito</button>
+              </div>
+            </div>
+            <div class="col novedadesProducto">
+              <div class="flex-md-row">
+                <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/magic.png"  srcset="
+                      img/images/pequenas/magic.png 300w,
+                      img/images/medianas/magic.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="Magic the gathering" loading="lazy"></a>
+              </div>
+              <div class="textoProducto flex-md-row">
+                Magic the Gathering
+              </div>
+              <div class="textoProducto flex-md-row">
+                Precio: 90.99€
+              </div>
+              <div class="flex-md-row">
+                <button class="botonAnadir">Añadir al carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div class="banner-container">
+      <div id="contenedorBannerCentral" class="banner col-12 col-md-11 mx-auto d-flex"></div>
+    </div>
+    <!--lo mas vendido-->
+    <div id="lmVendido">
+      <h2>LO MÁS VENDIDO</h2>
+    </div>
+    <div>
+      <!-- Carrusel de lo mas vendido -->
+      <div id="lmvendidoCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+
+          <div class="carousel-item active">
+            <div class="d-flex justify-content-center">
+              <div class="col-10">
+                <div class="p-3 border rounded lmVendidoProducto">
+                  <div class="flex-md-row">
+                    <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/scotland.png" srcset="
+                      img/images/pequenas/scotland.png 300w,
+                      img/images/medianas/scotland.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="scotland yard" loading="lazy"></a>
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Scothland Yard
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Precio: 39.99€
+                  </div>
+                  <div class="flex-md-row">
+                    <button aria-label="Scotland Yard" class="botonAnadir">Añadir al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="d-flex justify-content-center">
+              <div class="col-10">
+                <div class="p-3 border rounded lmVendidoProducto">
+                  <div class="flex-md-row">
+                    <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/senorAnillos.png" srcset="
+                      img/images/pequenas/senorAnillos.png 300w,
+                      img/images/medianas/senorAnillos.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px"
+                        alt="El Señor de los Anillos" loading="lazy"></a>
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    El Señor de los Anillos
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Precio: 65.99€
+                  </div>
+                  <div class="flex-md-row">
+                    <button aria-label="El Señor de los Anillos" class="botonAnadir">Añadir al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="d-flex justify-content-center">
+              <div class="col-10">
+                <div class="p-3 border rounded lmVendidoProducto">
+                  <div class="flex-md-row">
+                    <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/guerraAnillo.png" srcset="
+                      img/images/pequenas/guerraAnillo.png 300w,
+                      img/images/medianas/guerraAnillo.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px"
+                        alt="La Guerra del Anillo" loading="lazy"></a>
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    La Guerra del Anillo
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Precio: 75.99€
+                  </div>
+                  <div class="flex-md-row">
+                    <button aria-label="La Guerra del Anillo" class="botonAnadir">Añadir al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="d-flex justify-content-center">
+              <div class="col-10">
+                <div class="p-3 border rounded lmVendidoProducto">
+                  <div class="flex-md-row">
+                    <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/munchkin.png" srcset="
+                      img/images/pequenas/munchkin.png 300w,
+                      img/images/medianas/munchkin.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px"
+                        alt="Munchkin" loading="lazy"></a>
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Munchkin
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Precio: 49.99€
+                  </div>
+                  <div class="flex-md-row">
+                    <button aria-label="Munchkin" class="botonAnadir">Añadir
+                      al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="d-flex justify-content-center">
+              <div class="col-10">
+                <div class="p-3 border rounded lmVendidoProducto">
+                  <div class="flex-md-row">
+                    <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/viajesTierraMedia.png" srcset="
+                      img/images/pequenas/viajesTierraMedia.png 300w,
+                      img/images/medianas/viajesTierraMedia.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px"
+                        alt="Viajeros a la Tierra Media" loading="lazy"></a>
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Viajes por Tierra Media
+                  </div>
+                  <div class="textoProducto flex-md-row">
+                    Precio: 90.99€
+                  </div>
+                  <div class="flex-md-row">
+                    <button aria-label="Viajeros a la Tierra Media" class="botonAnadir">Añadir al carrito</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#lmvendidoCarousel" data-bs-slide="prev"
+          aria-label="Anterior Producto lo mas vendido">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#lmvendidoCarousel" data-bs-slide="next"
+          aria-label="Siguiente Producto lo mas vendido">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+
+      <!-- Versión de escritorio (sin carrusel) -->
+      <div class="container text-center d-none d-md-block">
+        <div class="row align-items-start">
+          <div class="col lmVendidoProducto">
+            <div class="flex-md-row">
+              <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/scotland.png"  srcset="
+                      img/images/pequenas/scotland.png 300w,
+                      img/images/medianas/scotland.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="scotland yard" loading="lazy"></a>
+            </div>
+            <div class="textoProducto flex-md-row">
+              Scothland Yard
+            </div>
+            <div class="textoProducto flex-md-row">
+              Precio: 39.99€
+            </div>
+            <div class="flex-md-row">
+              <button class="botonAnadir">Añadir al carrito</button>
+            </div>
+
+          </div>
+          <div class="col lmVendidoProducto">
+            <div class="flex-md-row">
+              <a href="#"><img class="normalizacionImagen" src="img/images/pequenas/senorAnillos.png" srcset="
+                      img/images/pequenas/senorAnillos.png 300w,
+                      img/images/medianas/senorAnillos.png 500w" 
+                      sizes="(max-width: 768px) 300px, 300px" alt="El Señor de los Anillos" loading="lazy"></a>
+            </div>
+            <div class="textoProducto flex-md-row">
+              El Señor de los Anillos
+            </div>
+            <div class="textoProducto flex-md-row">
+              Precio: 65.99€
+            </div>
+            <div class="flex-md-row">
+              <button class="botonAnadir">Añadir al carrito</button>
+            </div>
+          </div>
+          <div class="col lmVendidoProducto">
+            <div class="flex-md-row">
+              <a href="#"><img class="normalizacionImagen" src="img/images/guerraAnillo.png"
+                  alt="La Guerra del Anillo"></a>
+            </div>
+            <div class="textoProducto flex-md-row">
+              La Guerra del Anillo
+            </div>
+            <div class="textoProducto flex-md-row">
+              Precio: 75.99€
+            </div>
+            <div class="flex-md-row">
+              <button class="botonAnadir">Añadir al carrito</button>
+            </div>
+          </div>
+          <div class="col lmVendidoProducto">
+            <div class="flex-md-row">
+              <a href="#"><img class="normalizacionImagen" src="img/images/viajesTierraMedia.png"
+                  alt="Viajes por Tierra Media"></a>
+            </div>
+            <div class="textoProducto flex-md-row">
+              Viajes por Tierra Media
+            </div>
+            <div class="textoProducto flex-md-row">
+              Precio: 90.99€
+            </div>
+            <div class="flex-md-row">
+              <button class="botonAnadir">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Bienvenido a La Cueva del Enano</h1>
+        <p>Si quieres descubrir más sobre quienes somos entra aqui</p>
+
+        <a href="info.html" class="btn btn-primary conocenos">Conócenos</a>
+        <!-- Hero image by Nick Fewings @jannerboy62(https://unsplash.com/es/fotos/senalizacion-de-madera-marron-en-tronco-de-arbol-marron-G1lwX5OSz0I), CC BY 2.0, modificada -->
+
+      </div>
+    </section>
+
+    </main>
+    <!-- Footer -->
+    <footer class="text-light py-4">
+      <div class="container">
+
+        <!-- 🌄 Versión ESCRITORIO -->
+        <div class="d-none d-md-block">
+          <div class="row gy-4 text-md-start">
+
+            <!-- QUIÉNES SOMOS -->
+            <div id="quienSomos" class="col-md-4">
+              <h4 class="text-warning mb-3">¿Quiénes Somos?</h4>
+              <p id="textoQuienesSomos" class="small">
+                Nacimos bajo las montañas de la Tierra Media, donde los enanos
+                forjan acero y tallan runas en la roca eterna.
+                De pequeños aprendimos a blandir el hacha junto a Dáin, a
+                levantar escudos en las Puertas de Erebor y a beber
+                hidromiel en las tabernas de Valle.
+                <br><br>
+                Después de incontables aventuras, regresamos con una misión
+                clara: abrir un lugar donde todo amante de la fantasía y las
+                gestas épicas encuentre su refugio.
+                Así nació <strong>La Cueva del Enano</strong>, un rincón
+                seguro
+                donde los juegos de mesa son nuestro botín más preciado.
+              </p>
+            </div>
+
+            <!-- ENLACES LEGALES -->
+            <div id="enlacesInfo" class="col-md-4">
+              <h4 class="text-warning mb-3">Nuestra empresa</h4>
+              <div class="enlaces-legales">
+                <a href="#" class="d-block text-light mb-1">Aviso Legal</a>
+                <a href="#" class="d-block text-light mb-1">Política de
+                  privacidad</a>
+                <a href="#" class="d-block text-light mb-1">Protección de
+                  datos</a>
+                <a href="#" class="d-block text-light mb-1">Contacta con
+                  nosotros</a>
+                <a href="#" class="d-block text-light mb-1">Pago seguro</a>
+                <a href="#" class="d-block text-light mb-1">Devoluciones y
+                  reembolsos</a>
+                <a href="#" class="d-block text-light mb-1">Mapa del sitio</a>
+                <a href="#" class="d-block text-light mb-1">FAQs</a>
+                <a href="info.html" class="d-block text-light mb-1">
+                  Info
+                  <img src="iconsvec/info.png" alt="informacion" class="imgInfo">
+                </a>
+              </div>
+            </div>
+
+            <!-- UBICACIÓN Y CONTACTO -->
+            <div id="dondeEstamos" class="col-md-4">
+              <h4 class="text-warning mb-3">¿Dónde Estamos?</h4>
+              <div class="d-flex flex-column align-items-start">
+                <img src="img/icons/mapa.png" alt="ubicacion" class="mb-2" style="width:50px;">
+                <p class="small mb-3">
+                  La Cueva del Enano<br>
+                  Calle inventada s/n<br>
+                  Aguadulce, 04720<br>
+                  Almería, España
+                </p>
+
+                <img src="img/icons/soporte.png" alt="soporte" class="mb-2" style="width:50px;">
+                <p class="small mb-0">
+                  666000666 (WhatsApp)<br>
+                  info@lacuevadelenano.es
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 📱 Versión MÓVIL (acordeones) -->
+        <div class="accordion d-md-none" id="footerAccordion">
+
+          <!-- QUIÉNES SOMOS -->
+          <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+              <button id="botonSomos" class="accordion-button collapsed bg-dark text-warning" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                ¿Quiénes Somos?
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
+              <div id="textoQuienesSomos" class="accordion-body small">
+                Nacimos bajo las montañas de la Tierra Media, donde los enanos
+                forjan acero y tallan runas en la roca eterna.
+                <br><br>
+                Después de incontables aventuras, regresamos con una misión
+                clara: abrir un lugar donde todo amante de la fantasía y las
+                gestas épicas encuentre su refugio.
+                Así nació <strong>La Cueva del Enano</strong>.
+              </div>
+            </div>
+          </div>
+
+          <!-- ENLACES -->
+          <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+              <button id="botonInfo" class="accordion-button collapsed bg-dark text-warning" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                Nuestra empresa
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
+              <div id="enlacesInfo" class="accordion-body">
+                <a href="#" class="d-block text-light mb-1">Aviso Legal</a>
+                <a href="#" class="d-block text-light mb-1">Política de
+                  privacidad</a>
+                <a href="#" class="d-block text-light mb-1">Protección de
+                  datos</a>
+                <a href="#" class="d-block text-light mb-1">Contacta con
+                  nosotros</a>
+                <a href="#" class="d-block text-light mb-1">Pago seguro</a>
+                <a href="#" class="d-block text-light mb-1">Devoluciones y
+                  reembolsos</a>
+                <a href="#" class="d-block text-light mb-1">Mapa del sitio</a>
+                <a href="#" class="d-block text-light mb-1">FAQs</a>
+                <a href="info.html" class="d-block text-light mb-1">
+                  Info
+                  <img src="iconsvec/info.png" alt="informacion" class="imgInfo">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- UBICACIÓN -->
+          <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+              <button id="botonUbicacion" class="accordion-button collapsed bg-dark text-warning" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                ¿Dónde Estamos?
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#footerAccordion">
+              <div id="ubicacion" class="accordion-body small text-center">
+                <img src="img/icons/mapa.png" alt="ubicacion" class="mb-2" style="width:50px;">
+                <p>
+                  La Cueva del Enano<br>
+                  Calle inventada s/n<br>
+                  Aguadulce, 04720<br>
+                  Almería, España
+                </p>
+                <img src="img/icons/soporte.png" alt="soporte" class="mb-2" style="width:50px;">
+                <p>666000666 (WhatsApp)<br>info@lacuevadelenano.es</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 🔸 LÍNEA FINAL -->
+
+      </div>
+    </footer>
+    <div class="container-fluid text-center">
+      <div id="footer2" class="row align-items-center justify-content-center flex-column flex-md-row">
+        <div class="col-auto text-center mb-2 mb-md-0">
+          © 2025 La Cueva del Enano — Todos los derechos reservados.
+        </div>
+        <div class="col-auto redes-sociales text-center ms-md-3">
+          <a class="redes" href="#"><img src="/img/icons/redes/instagram-50.png" alt="Instagram"></a>
+          <a class="redes" href="#"><img src="/img/icons/redes/facebook-50.png" alt="Facebook"></a>
+          <a class="redes" href="#"><img src="/img/icons/redes/twitterx-50.png" alt="X"></a>
+          <a class="redes" href="#"><img src="/img/icons/redes/whatsapp-50.png" alt="Whatsapp"></a>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+
+    <!-- ===== MODAL PRODUCTO (REUTILIZABLE) ===== -->
+    <div id="modalProducto" class="modal-producto oculto">
+      <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <img id="modalImagen" src alt="imagen producto">
+        <h2 id="modalTitulo"></h2>
+        <p><strong>Precio:</strong> <span id="modalPrecio"></span></p>
+        <label for="cantidadProducto">Cantidad:</label>
+        <input type="number" id="cantidadProducto" min="1" value="1" autocomplete="off">
+
+        <div id="modalEtiquetas" class="etiquetas"></div>
+
+        <div class="ficha-tecnica">
+          <h3 class="ficha-titulo">
+            Ficha Técnica <span class="flecha">&#9662;</span>
+          </h3>
+          <div class="ficha-contenido">
+            <div class="ficha-grid">
+              <p><strong>Número de jugadores:</strong> <span id="modalJugadores"></span></p>
+              <p><strong>Duración:</strong> <span id="modalDuracion"></span></p>
+            </div>
+            <div>
+              <h4>Descripción</h4>
+              <p id="modalDescripcion"></p>
+            </div>
+            <div>
+              <h4>Otras características</h4>
+              <ul id="modalExtras"></ul>
+            </div>
+          </div>
+        </div>
+
+        <button id="botonAnadirModal" class="botonAnadir">Añadir al
+          carrito</button>
+      </div>
+    </div>
+
+</body>
+
+</html>
+
