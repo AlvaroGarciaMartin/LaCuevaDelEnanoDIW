@@ -79,6 +79,7 @@ Ejemplo de inserción de imagen:
 - JavaScript
 - Bootstrap 5
 
-## Observaciones
+## Resumen
 
-Este proyecto integra interacciones de interfaz y mejoras de accesibilidad solicitadas en las actividades de la práctica.
+Este proyecto integra interacciones de interfaz y mejoras de accesibilidad solicitadas en las actividades de la práctica. Se han aplicado los requisitos necesarios para la practica.
+En el video se puede comprobar la funcionalidad y los efectos solicitados, además se muestran las distintas interacciones con los distintos tamaños haciendo la pagina responsive.
