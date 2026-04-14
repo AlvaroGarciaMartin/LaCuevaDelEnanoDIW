@@ -56,7 +56,7 @@ Incluye un vídeo mostrando:
 - Interacciones (carrito, notificaciones, pestañas, búsqueda, etc.).
 - Prueba en al menos dos navegadores diferentes.
 
-Enlace del vídeo: [PEGAR_URL_VIDEO]
+Enlace del vídeo: https://1drv.ms/v/c/9919648882b601c7/IQDJdk4wPmQ0RKdBFk_GCQeZAeqrScddDaAwhuEHF5JbW3k?e=FbaM3g
 
 
 ### 4) Captura de accesibilidad
